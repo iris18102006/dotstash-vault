@@ -1,0 +1,57 @@
+set $mod Mod4
+font pango:JetBrains Mono 10
+gaps inner 12
+gaps outer 4
+smart_gaps on
+smart_borders on
+client.focused             #9d7cd8     #161320     #c4c1e0     #7c6ff2
+client.focused_inactive    #3b3554     #161320     #6b6690     #3b3554
+client.unfocused           #3b3554     #161320     #6b6690     #3b3554
+client.urgent               #ff5566    #161320     #ffffff     #ff5566
+bar {
+    mode invisible
+}
+floating_modifier $mod
+tiling_drag modifier titlebar
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+r restart
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+v split v
+bindsym $mod+b split h
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+mode "resize" {
+    bindsym h resize shrink width 10 px
+    bindsym j resize grow height 10 px
+    bindsym k resize shrink height 10 px
+    bindsym l resize grow width 10 px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+exec --no-startup-id picom -b
+exec --no-startup-id polybar main
+exec --no-startup-id dunst
+exec --no-startup-id feh --bg-fill ~/Downloads/iris.jpeg
